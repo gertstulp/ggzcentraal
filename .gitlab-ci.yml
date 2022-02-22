@@ -1,0 +1,16 @@
+image: registry.roqua.nl/roqua/rq
+
+variables:
+  R_LIBS_USER: '~/lib/R/library'
+  _R_CHECK_FORCE_SUGGESTS_: 'FALSE'
+
+before_script:
+  - docker login registry.roqua.nl -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD"
+
+docker:
+  script:
+    - mkdir public && echo $CI_COMMIT_SHA > public/commit.txt
+    - rq rewrite_docker_compose cspdna-r --services test --tag $CI_COMMIT_SHA
+    - rq build --push
+    - docker-compose -p cspdna-r$CI_JOB_ID run --rm test /app/tests.sh
+    - rq push

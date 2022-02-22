@@ -1,7 +1,7 @@
 PackratFormat: 1.4
 PackratVersion: 0.7.0
 RVersion: 4.1.2
-Repos: CRAN=https://cran.uni-muenster.de
+Repos: CRAN=https://ftp.belnet.be/mirror/CRAN
 
 Package: R6
 Source: CRAN

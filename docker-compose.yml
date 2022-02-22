@@ -1,6 +1,8 @@
 services:
   web:
-    build: .
+    build: 
+      context: .
+      target: builder
     image: cspdna-r:devsetup
     command: apachectl -DFOREGROUND
     environment:
@@ -19,7 +21,9 @@ services:
   # devtools::test()
   # TODO maybe use https://rdrr.io/cran/testthat/man/test_file.html
   test:
-    build: .
+    build:
+      context: .
+      target: builder
     image: cspdna-r:devsetup
     command: R
     volumes:
