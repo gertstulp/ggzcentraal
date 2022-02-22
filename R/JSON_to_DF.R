@@ -2,7 +2,6 @@
 #'
 #' @param raw A dataframe in pre-specified format (429 variables)
 #' @return A clean dataframe that can be used for visualization
-#' @import dplyr
 #' @importFrom lubridate as_datetime
 #' @export
 JSON_to_DF <- function(raw) {

@@ -13,8 +13,6 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10),
@@ -22,9 +20,14 @@ Depends:
     ggplot2,
     patchwork,
     forcats,
-    jsonlite,
     lubridate,
     grid,
     purrr,
     stringr,
-    svglite
+    svglite,
+    tidyr
+Suggests:
+    devtools,
+    jsonlite,
+    roxygen2,
+    testthat (>= 3.0.0)
