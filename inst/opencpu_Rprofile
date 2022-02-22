@@ -1,0 +1,5 @@
+# add packrat libs to the front
+.libPaths(c('packrat/lib/x86_64-pc-linux-gnu/4.1.2/', 'packrat/lib-R/x86_64-pc-linux-gnu/4.2.1/', .libPaths()))
+
+# preload our lib
+library("ggzcentraal")

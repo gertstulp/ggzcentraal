@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    image: cspdna-r:devsetup
+    command: apachectl -DFOREGROUND
+    environment:
+      R_LIBS_USER:
+      _R_CHECK_FORCE_SUGGESTS_:
+    restart: unless-stopped
+    healthcheck:
+      test: netstat -an | grep 0.0.0.0:80 > /dev/null; if [ 0 != $$? ]; then exit 1; fi;
+    expose:
+      - 80
+
+  # docker-compose run test bash
+  # R
+  # devtools::load_all(); testthat::test_dir("tests/") # Run this every time you change your code.
+  # OR (sometimes a better result, mostly less useful feedback)
+  # devtools::test()
+  # TODO maybe use https://rdrr.io/cran/testthat/man/test_file.html
+  test:
+    build: .
+    image: cspdna-r:devsetup
+    command: R
+    volumes:
+      # we map individual dirs, because Henk failed to make packrat install in /packrat.
+      # that would be a nicer solution.
+      - ./R/:/app/R
+      - ./tests:/app/tests
+      - ./svc.prediction.Rcheck:/app/svc.prediction.Rcheck
+      - ./inst:/app/inst
+      # - .:/app

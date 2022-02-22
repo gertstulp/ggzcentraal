@@ -1,0 +1,8 @@
+**/.git
+*.tar.gz
+Dockerfile
+*.Rcheck
+local
+# these will be built within docker. Don't want to copy osx libs.
+packrat/lib*/
+packrat/src
