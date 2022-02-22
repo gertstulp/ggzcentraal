@@ -4,3 +4,12 @@
 .Ruserdata
 .xlsx
 .DS_Store
+
+# R Builds
+*.tar.gz
+
+packrat/lib*/
+packrat/src
+ggzcentraal.Rcheck
+
+local

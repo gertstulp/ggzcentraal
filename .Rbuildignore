@@ -1,2 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^packrat/
+^\.Rprofile$
+^local/
+
+.gitignore
+.gitlab-ci.yml
+Dockerfile
+docker-compose.yml
