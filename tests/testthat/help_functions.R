@@ -2,9 +2,7 @@
 #' tese functions are created by Roqua not by Gert Stulp, creator package
 #' @param filename the name of the file
 #' @return complete path
-#' @import jsonlite
 #' @importFrom stringr str_c
-#' @export
 gettestfilepath <- function(filename) {
   if (tail(strsplit(getwd(), '[/\\]')[[1]], n=1) != "testthat")
     normalizePath(str_c("tests/testthat/", filename))
@@ -14,7 +12,6 @@ gettestfilepath <- function(filename) {
 
 
 # trying to be like https://github.com/jeroenooms/opencpu/blob/058eef69e811d2059f850e9977717159e8e91fde/R/parse_post.R
-#' @export
 opencpu_like_parse_json <- function(filename) {
   obj <- as.list(jsonlite::fromJSON(filename))
   
