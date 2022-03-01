@@ -16,7 +16,7 @@ RUN ./inst/bash/install-package-dependencies.sh
 # Add packrat libs to opencpu search path
 ADD ./inst/opencpu_Rprofile /etc/opencpu/Rprofile
 
-RUN mkdir -p /app/ggzcentraal.Rcheck/tests/ && ln -sf /proc/self/fd/1 /app/ggzcentraal.Rcheck/tests/testthat.Rout
+RUN mkdir -p /app/cspdna.Rcheck/tests/ && ln -sf /proc/self/fd/1 /app/cspdna.Rcheck/tests/testthat.Rout
 
 ADD ./ /app
 

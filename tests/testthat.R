@@ -1,6 +1,6 @@
 source("testthat/help_functions.R")
 library(jsonlite)
 library(testthat)
-library(ggzcentraal)
+library(cspdna)
 
-test_check("ggzcentraal")
+test_check("cspdna")

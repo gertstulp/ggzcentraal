@@ -2,4 +2,4 @@
 .libPaths(c('packrat/lib/x86_64-pc-linux-gnu/3.4.4/', 'packrat/lib-R/x86_64-pc-linux-gnu/3.4.4/', .libPaths()))
 
 # preload our lib
-library("ggzcentraal")
+library("cspdna")
