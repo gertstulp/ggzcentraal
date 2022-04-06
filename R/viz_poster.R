@@ -6,13 +6,12 @@
 #' @return An svg of poster
 #' @import patchwork grid svglite
 #' @importFrom dplyr filter
-#' @export
 viz_poster <- function(data, height = 60, width = 35) {
 
   if( is.character(data) ) { 
-    return( list(error = data) )
+    return( list(errors = data) )
   } else if( !is.data.frame(data) ) {
-    return( list(error = "Input not a dataframe"))
+    return( list(errors = "Input not a dataframe"))
   }
   
   no_fig <- unique(data[["pertwee"]])
@@ -24,8 +23,7 @@ viz_poster <- function(data, height = 60, width = 35) {
 
   #svg(file = paste0("poster_", height,"x", width,".svg"), height = height, width = width)
 
-  viz_string <- svglite::svgstring(fix_text_size = FALSE, standalone = FALSE, 
-                                   height = 2.5, width = 5)
+  viz_string <- svglite::svgstring(fix_text_size = FALSE, height = height, width = width)
   
   pushViewport(viewport(layout = grid.layout(ceiling(length(no_fig)/2), 2)))
   vplayout <- function(x, y) viewport(layout.pos.row = x,
@@ -60,6 +58,5 @@ viz_poster <- function(data, height = 60, width = 35) {
   invisible(dev.off())
   # as.scalar function does not work
   # list(svg = as.scalar2(viz_string())) 
-  list(svg = (viz_string())) 
-
+  list(svgs = list(poster = as.scalar2(as.character(viz_string()))))
 }
