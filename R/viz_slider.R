@@ -18,9 +18,13 @@ viz_slider <- function(data, height = 18.3, width = 36.8) {
   no_fig <- no_fig[!is.na(no_fig)]
   data$interval_esm <-  data[["pertwee"]]
 
-  ts1 <- viz_ts(data, left_right = "left")
-  ts2 <- viz_ts(data, left_right = "right")
-
+  suppressWarnings(
+    ts1 <- viz_ts(data, left_right = "left")
+  )
+  suppressWarnings(
+    ts2 <- viz_ts(data, left_right = "right")
+  )
+  
   slider_list <- list()
   
   for (i in no_fig) {
@@ -29,21 +33,23 @@ viz_slider <- function(data, height = 18.3, width = 36.8) {
     data_zoom <- filter(data, pertwee ==  i)
 
     # Combine graphs for slider
-    combined <- (ts1 + viz_zoom(data_zoom) | ts2 + viz_zoom(data_zoom) ) / viz_nw(data_zoom, output = "slider") / viz_grid(data_zoom) + plot_layout(ncol = 1, heights = c(1, 2, 2))
-
+    suppressWarnings(
+      combined <- (ts1 + viz_zoom(data_zoom) | ts2 + viz_zoom(data_zoom) ) / viz_nw(data_zoom, output = "slider") / viz_grid(data_zoom) + plot_layout(ncol = 1, heights = c(1, 2, 2))
+    )
     #ggsave(paste0("slider_", i,".svg"), combined, width = width, height = height, unit = "cm")
     #slider_list[[paste0("slider_", i)]] <- combined
 
     # Create string of svg
     viz_string <- svglite::svgstring(fix_text_size = FALSE, standalone = FALSE,
                                      width = width, height = height)
-    plot(combined)
+    suppressWarnings( plot(combined) )
     invisible(dev.off())
     
     # Add svg string to list    
     # as.scalar function does not work
     # slider_list[[paste0("svg_slider_", i)]] <- as.scalar2(viz_string())
-    slider_list[[paste0("svg_slider_", i)]] <- (viz_string())
+    slider_list[[paste0("svg_slider_", i)]] <- as.scalar2(as.character(viz_string()))
   }
-  return(slider_list)
+  #return(slider_list)
+  return( list(svgs = list(slider = slider_list)) )
 }

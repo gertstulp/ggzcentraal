@@ -49,7 +49,7 @@ viz_report_alone <- function(data, output_format = "svg") {
 
   g <- ggplot(d, aes(x = csp_dna_55_a0, y = perc, fill = fase)) +
     geom_bar(position = "stack", stat = "identity") +
-    scale_x_continuous(
+    scale_x_discrete(
       breaks = lbls_alone$csp_dna_55_a0, 
       labels = lbls_alone$lbl
     ) +
@@ -63,7 +63,8 @@ viz_report_alone <- function(data, output_format = "svg") {
       legend.position = "top",
       panel.grid = element_blank(),
       axis.title = element_text(size = 18),
-      axis.text = element_text(size = 16)
+      axis.text = element_text(size = 16),
+      plot.margin = margin(r = 50)
     ) +
     coord_flip()
   
@@ -80,7 +81,8 @@ viz_report_alone <- function(data, output_format = "svg") {
     invisible(dev.off())
     # as.scalar function does not work
     # list(svg = as.scalar2(viz_string())) 
-    list(svg = (viz_string())) 
+    # list(svg = (viz_string())) 
+    list(svgs = list(alone = as.scalar2(as.character(viz_string()))))
   }
   
 }

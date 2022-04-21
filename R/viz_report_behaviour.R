@@ -3,7 +3,7 @@
 #' @param data A dataframe with raw data
 #' @param output_format String ("svg" or "ggplot") defining whether output should be ggplot or svg
 #' @return An svg of visualisation
-#' @import dplyr forcats ggplot2 tidyr
+#' @import dplyr forcats ggplot2 tidyr grid
 #' @export
 viz_report_behaviour <- function(data, output_format = "svg") {
 
@@ -74,7 +74,7 @@ viz_report_behaviour <- function(data, output_format = "svg") {
   }
   
   if(output_format == "ggplot") {
-    grid.draw(g)
+    grid::grid.draw(g)
   } else {
     # svg(file = "viz_report_behaviour.svg", height = 7.5, width = 5)
     # grid.draw(g)
@@ -85,7 +85,8 @@ viz_report_behaviour <- function(data, output_format = "svg") {
     invisible(dev.off())
     # as.scalar function does not work
     # list(svg = as.scalar2(viz_string())) 
-    list(svg = (viz_string())) 
+    #list(svg = (viz_string())) 
+    list(svgs = list(behaviour = as.scalar2(as.character(viz_string()))))
   }
 
 }

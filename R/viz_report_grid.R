@@ -127,6 +127,7 @@ viz_report_grid <- function(data, output_format = "svg") {
     invisible(dev.off())
     # as.scalar function does not work
     # list(svg = as.scalar2(viz_string())) 
-    list(svg = (viz_string())) 
+    #list(svg = (viz_string())) 
+    list(svgs = list(grid = as.scalar2(as.character(viz_string()))))
   }
 }
