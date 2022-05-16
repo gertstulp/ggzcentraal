@@ -72,7 +72,7 @@ viz_grid <- function(data) {
                aes(x = var_cat, y = y, colour = clr), size = 8, inherit.aes = FALSE) +
     geom_text(data = filter(grid_df, Score == 1),
               aes(x = var_cat, y = y, label = tolower(substr(Variabele, 1, 3))), size = 3,
-              colour = "white", inherit.aes = FALSE) +
+              colour = "white", angle = 45, inherit.aes = FALSE) +
     theme_classic() +
     scale_colour_identity() +
     coord_flip() +

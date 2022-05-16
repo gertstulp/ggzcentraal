@@ -79,7 +79,7 @@ viz_report_behaviour <- function(data, output_format = "svg") {
     # svg(file = "viz_report_behaviour.svg", height = 7.5, width = 5)
     # grid.draw(g)
     # dev.off()
-    viz_string <- svglite::svgstring(fix_text_size = FALSE, standalone = FALSE, 
+    viz_string <- svglite::svgstring(fix_text_size = FALSE, 
                                      height = 7.5, width = 5)
     plot(g)
     invisible(dev.off())

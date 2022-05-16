@@ -39,8 +39,7 @@ viz_report_response <- function(data, output_format = "svg") {
     # plot(g)
     # dev.off() 
     # # list(svg = as.scalar2())
-    viz_string <- svglite::svgstring(fix_text_size = FALSE, standalone = FALSE, 
-                                     height = 1.5, width = 5)
+    viz_string <- svglite::svgstring(fix_text_size = FALSE, height = 1.5, width = 5)
     plot(g)
     invisible(dev.off())
     # as.scalar function does not work

@@ -36,12 +36,16 @@ viz_slider <- function(data, height = 18.3, width = 36.8) {
     suppressWarnings(
       combined <- (ts1 + viz_zoom(data_zoom) | ts2 + viz_zoom(data_zoom) ) / viz_nw(data_zoom, output = "slider") / viz_grid(data_zoom) + plot_layout(ncol = 1, heights = c(1, 2, 2))
     )
-    #ggsave(paste0("slider_", i,".svg"), combined, width = width, height = height, unit = "cm")
+    # if(i == 1) {
+    #   w = 36.8/2.4; h = 18.3/2.4
+    #   ggsave(paste0("slider_", i,  "_", round(w), "_", round(h), ".svg"), combined, width = w, height = h, unit = "in")
+    # }
     #slider_list[[paste0("slider_", i)]] <- combined
 
+    
     # Create string of svg
-    viz_string <- svglite::svgstring(fix_text_size = FALSE, standalone = FALSE,
-                                     width = width, height = height)
+    viz_string <- svglite::svgstring(fix_text_size = FALSE, 
+                                     height = 18.3/2.4, width = 36.8/2.4)
     suppressWarnings( plot(combined) )
     invisible(dev.off())
     
